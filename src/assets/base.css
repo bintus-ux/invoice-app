@@ -1,0 +1,33 @@
+/* Global resets / overrides */
+* {
+  @apply box-border;
+}
+
+html {
+  font-size: 16px; /* base font size */
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-primary font-normal text-black bg-background antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* If you want to keep CSS variables for runtime use */
+:root {
+  --sidebar-width: 260px;
+  --header-height: 64px;
+}
+
+/* Optional: Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: theme('colors.grey'); /* pulls from Tailwind config */
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
