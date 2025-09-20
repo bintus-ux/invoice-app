@@ -5,7 +5,9 @@
       class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 mx-auto"
     >
       <!-- App Title -->
-      <h1 class="text-2xl md:text-3xl font-bold text-center mb-2 text-gray-800">Welcome Back</h1>
+      <h1 class="text-2xl md:text-3xl font-primary font-semibold text-center mb-2 text-gray-800">
+        Welcome Back
+      </h1>
       <p class="text-sm text-center text-gray-500 mb-8">Sign in to your account</p>
 
       <!-- Email -->
