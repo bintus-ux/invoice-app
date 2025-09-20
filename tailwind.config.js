@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         grey: '#697598',
+        blue: '#003EFF',
         black: '#1f1f23',
         'dark-grey': '#373b47',
         white: '#ffffff',
@@ -12,9 +13,7 @@ export default {
         background: '#f8fafc',
       },
       fontFamily: {
-        // Primary font for most UI text
         primary: ['Inter', 'sans-serif'],
-        // Secondary serif font for headings or accents
         secondary: ['Georgia', 'serif'],
       },
       fontWeight: {

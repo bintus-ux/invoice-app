@@ -1,3 +1,29 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase'
+import { useRouter } from 'vue-router'
+
+const email = ref('')
+const password = ref('')
+const error = ref('')
+const loading = ref(false)
+const router = useRouter()
+
+async function onSignup() {
+  loading.value = true
+  error.value = ''
+  try {
+    await createUserWithEmailAndPassword(auth, email.value, password.value)
+    router.push('/')
+  } catch (e: unknown) {
+    error.value = (e as Error).message || 'An error occurred'
+  } finally {
+    loading.value = false
+  }
+}
+</script>
+
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-50 px-4">
     <form
@@ -36,7 +62,7 @@
       <button
         type="submit"
         :disabled="loading"
-        class="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full py-3 bg-blue text-white rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <span v-if="loading">Signing up...</span>
         <span v-else>Sign Up</span>
@@ -50,36 +76,8 @@
       <!-- Login link -->
       <p class="text-sm text-center text-gray-600 mt-6">
         Already have an account?
-        <RouterLink to="/login" class="text-blue-600 font-medium hover:underline">
-          Log in
-        </RouterLink>
+        <RouterLink to="/login" class="text-grey font-medium hover:underline"> Log in </RouterLink>
       </p>
     </form>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
-import { useRouter } from 'vue-router'
-
-const email = ref('')
-const password = ref('')
-const error = ref('')
-const loading = ref(false)
-const router = useRouter()
-
-async function onSignup() {
-  loading.value = true
-  error.value = ''
-  try {
-    await createUserWithEmailAndPassword(auth, email.value, password.value)
-    router.push('/')
-  } catch (e: unknown) {
-    error.value = (e as Error).message || 'An error occurred'
-  } finally {
-    loading.value = false
-  }
-}
-</script>
