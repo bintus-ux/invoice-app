@@ -1,0 +1,22 @@
+@import './fonts/fonts.css';
+@import './base.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global app wrapper */
+#app {
+  width: 100%; /* allow full width */
+  min-height: 100vh; /* ensure it always fills the viewport vertically */
+  font-weight: normal;
+  display: flex;
+  flex-direction: column; /* keeps children stacked naturally */
+}
+
+/* Global link hover styles (optional) */
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
