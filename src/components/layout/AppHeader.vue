@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
-import { useRouter } from 'vue-router'
 import NotificationIcon from '../icons/NotificationIcon.vue'
 import ArrowDownIcon from '../icons/ArrowDownIcon.vue'
+import HamburgerIcon from '../icons/HamburgerIcon.vue'
 
 const router = useRouter()
+const route = useRoute()
+
 const user = ref(auth.currentUser)
 const showDropdown = ref(false)
 
@@ -28,6 +32,21 @@ const initials = computed(() => {
   const names = user.value.displayName.split(' ')
   return names.length >= 2 ? names[0][0] + names[1][0] : names[0][0]
 })
+
+const routeTitles: Record<string, string> = {
+  '/': 'Getting Started',
+  '/overview': 'Overview',
+  '/accounts': 'Accounts',
+  '/invoice': 'Invoice',
+  '/beneficiaries': 'Beneficiary Management',
+  '/help': 'Help Center',
+  '/settings': 'Settings',
+}
+
+// 2️⃣ Computed property for current page title
+const pageTitle = computed(() => {
+  return routeTitles[route.path] ?? 'Page'
+})
 </script>
 
 <template>
@@ -35,13 +54,10 @@ const initials = computed(() => {
     <div class="flex items-center justify-between px-8 py-4 border-b border-gray-200">
       <!-- Mobile menu button -->
       <button class="lg:hidden p-2 rounded-md hover:bg-gray-100" @click="$emit('toggleSidebar')">
-        <!-- simple hamburger icon -->
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <HamburgerIcon />
       </button>
 
-      <h1 class="text-xl md:text-3xl font-medium text-dark-grey">Invoice</h1>
+      <h1 class="text-xl md:text-2xl font-medium text-dark-grey">{{ pageTitle }}</h1>
 
       <div class="flex items-center gap-2 relative">
         <button class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-gray-100">
