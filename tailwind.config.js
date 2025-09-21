@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      spacing: {
+        sidebar: '280px',
+      },
       colors: {
         grey: '#697598',
         blue: '#003EFF',

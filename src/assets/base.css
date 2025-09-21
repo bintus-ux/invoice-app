@@ -14,10 +14,38 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* If you want to keep CSS variables for runtime use */
+/* src/assets/css/main.css */
 :root {
-  --sidebar-width: 260px;
-  --header-height: 64px;
+  /* Layout variables */
+  --sidebar-width: 16rem; /* 256px - using rem for scalability */
+  --sidebar-width-lg: 18rem; /* 288px - larger screens */
+  --header-height: 4rem; /* 64px */
+
+  /* Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+
+  /* Breakpoints */
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+}
+
+/* Responsive design helper classes */
+@media (min-width: 768px) {
+  .md\:sidebar-open {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:sidebar-open {
+    margin-left: var(--sidebar-width-lg);
+  }
 }
 
 /* Optional: Custom scrollbars */

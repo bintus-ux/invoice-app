@@ -30,13 +30,11 @@ async function onLogin() {
       @submit.prevent="onLogin"
       class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 mx-auto"
     >
-      <!-- Header -->
       <h1 class="text-2xl md:text-3xl font-primary font-semibold text-center mb-2 text-gray-800">
         Welcome Back
       </h1>
       <p class="text-sm text-center text-gray-500 mb-8">Sign in to your account</p>
 
-      <!-- Email -->
       <div class="mb-5">
         <label class="block text-sm font-medium text-gray-600 mb-1">Email</label>
         <input
@@ -48,7 +46,6 @@ async function onLogin() {
         />
       </div>
 
-      <!-- Password -->
       <div class="mb-6">
         <label class="block text-sm font-medium text-gray-600 mb-1">Password</label>
         <input
@@ -60,7 +57,6 @@ async function onLogin() {
         />
       </div>
 
-      <!-- Submit Button -->
       <button
         type="submit"
         :disabled="loading"
@@ -70,10 +66,8 @@ async function onLogin() {
         <span v-else>Sign In</span>
       </button>
 
-      <!-- Error Message -->
       <p v-if="error" class="mt-4 text-red-500 text-sm text-center">{{ error }}</p>
 
-      <!-- Signup link -->
       <p class="text-sm text-center text-gray-600 mt-6">
         Don't have an account?
         <RouterLink to="/signup" class="text-grey font-medium hover:underline">
