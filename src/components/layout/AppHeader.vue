@@ -50,7 +50,7 @@ const pageTitle = computed(() => {
 </script>
 
 <template>
-  <header>
+  <header class="sticky top-0 bg-white z-50">
     <div class="flex items-center justify-between px-8 py-4 border-b border-gray-200">
       <!-- Mobile menu button -->
       <button class="lg:hidden p-2 rounded-md hover:bg-gray-100" @click="$emit('toggleSidebar')">
