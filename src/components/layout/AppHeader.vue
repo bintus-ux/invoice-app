@@ -43,7 +43,6 @@ const routeTitles: Record<string, string> = {
   '/settings': 'Settings',
 }
 
-// 2️⃣ Computed property for current page title
 const pageTitle = computed(() => {
   return routeTitles[route.path] ?? 'Page'
 })

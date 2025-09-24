@@ -74,7 +74,7 @@ const summaryCards = [
           SEE WHAT'S NEW
         </button>
         <button
-          class="bg-blue-600 text-white bg-blue font-medium text-sm py-2 px-6 rounded-full hover:bg-blue transition"
+          class="bg-blue text-white bg-blue hover:text-blue hover:bg-white font-medium text-sm py-2 px-6 rounded-full hover:bg-blue transition"
         >
           CREATE
         </button>
@@ -100,7 +100,7 @@ const summaryCards = [
             {{ card.count }}
           </div>
         </div>
-        <p class="text-2xl font-bold text-gray-900">{{ formatCurrency(card.value) }}</p>
+        <p class="text-xl font-bold text-black">{{ formatCurrency(card.value) }}</p>
       </div>
     </div>
   </div>

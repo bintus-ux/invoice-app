@@ -21,12 +21,15 @@ const openCustomersModal = () => console.log('Open customers modal')
 
 <template>
   <div class="mb-8">
-    <h2 class="text-xl text-black mb-4">Invoice Actions</h2>
+    <div class="flex justify-between items-center mb-4 w-full gap-2">
+      <h2 class="text-xl font-semibold text-black">Invoice Actions</h2>
+      <hr class="border border-[#FFFFFF] w-[80%]" />
+    </div>
 
     <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(18rem,1fr))]">
       <!-- Create New Invoice Card -->
       <div
-        class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl shadow-md flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
+        class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
         @click="openCreateModal"
       >
         <div class="mb-4 text-blue-700 group-hover:text-white">
@@ -38,7 +41,7 @@ const openCustomersModal = () => console.log('Open customers modal')
 
       <!-- Change Invoice Settings Card -->
       <div
-        class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl shadow-md flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
+        class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
         @click="openSettingsModal"
       >
         <div class="mb-4 text-blue-700 group-hover:text-white">
@@ -50,7 +53,7 @@ const openCustomersModal = () => console.log('Open customers modal')
 
       <!-- Manage Customer List Card -->
       <div
-        class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl shadow-md flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
+        class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
         @click="openCustomersModal"
       >
         <div class="mb-4 text-blue-700 group-hover:text-white">
