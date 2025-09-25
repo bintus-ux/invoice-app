@@ -51,12 +51,15 @@ npm run mock-server  # Mock socket backend
 npm run test
 ```
 
-Assumptions
-	1.	Dashboard Design
-The provided design only includes the invoice UI. No design specifications are provided for the dashboard. Therefore, the dashboard page displays the necessary components by default upon mounting, without any additional styling or layout assumptions beyond the invoice UI.
-	2.	Authentication Flow
-	•	Users who are not authenticated are redirected to the /login page.
-	•	Upon successful login, users are redirected directly to the /invoice page instead of the dashboard. This decision is based on the absence of a dashboard design and to ensure immediate access to the primary functionality (invoice management).
-	3.	Page Mounting Behavior
-	•	On mounting the app, the system checks the authentication state.
-	•	Unauthenticated users see the login page, and authenticated users see the invoice page directly.
+## Assumptions
+
+1. **Dashboard Design**  
+   The provided design only includes the invoice UI. No design specifications are provided for the dashboard. Therefore, the dashboard page displays the necessary components by default upon mounting, without any additional styling or layout assumptions beyond the invoice UI.
+
+2. **Authentication Flow**  
+   - Users who are not authenticated are redirected to the `/login` page.  
+   - Upon successful login, users are redirected directly to the `/invoice` page instead of the dashboard. This decision is based on the absence of a dashboard design and to ensure immediate access to the primary functionality (invoice management).
+
+3. **Page Mounting Behavior**  
+   - On mounting the app, the system checks the authentication state.  
+   - Unauthenticated users see the login page, and authenticated users see the invoice page directly.
