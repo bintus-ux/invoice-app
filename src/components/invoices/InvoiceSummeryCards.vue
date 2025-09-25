@@ -1,7 +1,22 @@
 <script lang="ts" setup>
 import OverviewIcon from '../icons/OverviewIcon.vue'
+import { ref } from 'vue'
+import CreateInvoiceModal from './modals/CreateInvoiceModal.vue'
+import type { Invoice } from '@/types/invoice'
 
-// define props
+const showCreateModal = ref(false)
+
+const emit = defineEmits<{
+  (e: 'invoice-created', invoice: Invoice): void
+}>()
+
+const openCreateModal = () => (showCreateModal.value = true)
+const closeCreateModal = () => (showCreateModal.value = false)
+const handleInvoiceCreate = (invoiceData: Invoice) => {
+  closeCreateModal()
+  emit('invoice-created', invoiceData)
+}
+
 const props = defineProps<{
   summaryData?: {
     totalPaid: number
@@ -11,7 +26,6 @@ const props = defineProps<{
   }
 }>()
 
-// fallback default values if not provided
 const summaryData = props.summaryData ?? {
   totalPaid: 4120102.78,
   totalOverdue: 23000.03,
@@ -61,7 +75,6 @@ const summaryCards = [
 
 <template>
   <div class="flex flex-col gap-6 w-full mb-8">
-    <!-- Header Section -->
     <div
       class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 lg:gap-4 w-full"
     >
@@ -75,13 +88,13 @@ const summaryCards = [
         </button>
         <button
           class="bg-blue text-white bg-blue hover:text-blue hover:bg-white font-medium text-sm py-2 px-6 rounded-full hover:bg-blue transition"
+          @click="openCreateModal"
         >
           CREATE
         </button>
       </div>
     </div>
 
-    <!-- Summary Cards -->
     <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] w-full">
       <div
         v-for="card in summaryCards"
@@ -103,5 +116,10 @@ const summaryCards = [
         <p class="text-xl font-bold text-black">{{ formatCurrency(card.value) }}</p>
       </div>
     </div>
+    <CreateInvoiceModal
+      v-if="showCreateModal"
+      @close="closeCreateModal"
+      @create="handleInvoiceCreate"
+    />
   </div>
 </template>

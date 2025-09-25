@@ -4,15 +4,19 @@ import CreateInvoiceModal from '@/components/invoices/modals/CreateInvoiceModal.
 import CashIcon from '../icons/CashIcon.vue'
 import InvoiceSettingsIcon from '../icons/InvoiceSettingsIcon.vue'
 import CustomerListIcon from '../icons/CustomerListIcon.vue'
+import type { Invoice } from '@/types/invoice'
 
 const showCreateModal = ref(false)
 
-// Modal functions
+const emit = defineEmits<{
+  (e: 'invoice-created', invoice: Invoice): void
+}>()
+
 const openCreateModal = () => (showCreateModal.value = true)
 const closeCreateModal = () => (showCreateModal.value = false)
-const handleInvoiceCreate = (invoiceData: unknown) => {
-  console.log('New invoice created:', invoiceData)
+const handleInvoiceCreate = (invoiceData: Invoice) => {
   closeCreateModal()
+  emit('invoice-created', invoiceData)
 }
 
 const openSettingsModal = () => console.log('Open settings modal')
@@ -27,7 +31,6 @@ const openCustomersModal = () => console.log('Open customers modal')
     </div>
 
     <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(18rem,1fr))]">
-      <!-- Create New Invoice Card -->
       <div
         class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
         @click="openCreateModal"
@@ -39,7 +42,6 @@ const openCustomersModal = () => console.log('Open customers modal')
         <p class="text-sm group-hover:text-white">Create new invoice easily</p>
       </div>
 
-      <!-- Change Invoice Settings Card -->
       <div
         class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
         @click="openSettingsModal"
@@ -51,7 +53,6 @@ const openCustomersModal = () => console.log('Open customers modal')
         <p class="text-sm">Customize your invoices</p>
       </div>
 
-      <!-- Manage Customer List Card -->
       <div
         class="bg-white text-dark-grey hover:text-white p-6 rounded-2xl flex flex-col items-start cursor-pointer transition-all duration-300 hover:bg-blue hover:text-white hover:-translate-y-1 hover:shadow-lg"
         @click="openCustomersModal"
@@ -64,7 +65,6 @@ const openCustomersModal = () => console.log('Open customers modal')
       </div>
     </div>
 
-    <!-- Create Invoice Modal -->
     <CreateInvoiceModal
       v-if="showCreateModal"
       @close="closeCreateModal"

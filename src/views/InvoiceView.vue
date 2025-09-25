@@ -6,6 +6,7 @@ import InvoiceActions from '@/components/invoices/InvoiceActions.vue'
 import RecentInvoices from '@/components/invoices/RecentInvoices.vue'
 import RecentActivities from '@/components/invoices/RecentActivities.vue'
 import InvoiceDetailsModal from '@/components/invoices/modals/InvoiceDetailsModal.vue'
+import SuccessModal from '@/components/invoices/modals/SuccessModal.vue'
 import type { Invoice } from '@/types/invoice'
 
 const summaryData = {
@@ -17,6 +18,12 @@ const summaryData = {
 
 const selectedInvoice = ref<Invoice | null>(null)
 const showInvoiceModal = ref(false)
+const showSuccessModal = ref(false)
+
+const handleInvoiceCreated = (invoice: Invoice) => {
+  console.log('Invoice created in parent:', invoice)
+  showSuccessModal.value = true
+}
 
 const openInvoiceDetails = (invoice: Invoice) => {
   selectedInvoice.value = invoice
@@ -29,7 +36,7 @@ const openInvoiceDetails = (invoice: Invoice) => {
     <div class="flex items-center justify-center">
       <div class="invoice-dashboard">
         <InvoiceSummeryCards :summary-data="summaryData" />
-        <InvoiceActions />
+        <InvoiceActions @invoice-created="handleInvoiceCreated" />
         <div class="w-full h-auto flex flex-col md:flex-row justify-between gap-8">
           <div class="w-full md:w-[60%]">
             <RecentInvoices @invoice-selected="openInvoiceDetails" />
@@ -37,7 +44,7 @@ const openInvoiceDetails = (invoice: Invoice) => {
           <div class="w-full md:w-[40%]">
             <div class="h-[350px] w-full bg-white rounded-4xl p-6 overflow-y-auto">
               <div class="flex justify-between items-center mb-4">
-                <h1 class="text-xl text-black font-medium">Recent activities</h1>
+                <h1 class="text-md text-black font-bold">Recent activities</h1>
                 <button
                   class="text-xs text-blue hover:bg-blue hover:text-white bg-white py-2 px-6 rounded-full font-medium border border-grey"
                 >
@@ -50,6 +57,12 @@ const openInvoiceDetails = (invoice: Invoice) => {
           </div>
         </div>
         <InvoiceDetailsModal />
+        <SuccessModal
+          :visible="showSuccessModal"
+          title="Invoice Created!"
+          message="Your invoice was created successfully."
+          @close="showSuccessModal = false"
+        />
       </div>
     </div>
   </DashboardLayout>

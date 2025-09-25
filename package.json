@@ -22,6 +22,7 @@
     "dev:with-socket": "concurrently \"npm run socket:server\" \"npm run dev\""
   },
   "dependencies": {
+    "@vueuse/motion": "^3.0.3",
     "firebase": "^12.3.0",
     "pinia": "^3.0.3",
     "socket.io-client": "^4.8.1",

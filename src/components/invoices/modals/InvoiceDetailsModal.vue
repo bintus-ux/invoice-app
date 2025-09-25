@@ -47,7 +47,6 @@ const getStatusBadgeClass = (status: string) => {
       <div
         class="bg-white rounded-[30px] md:rounded-[40px] overflow-y-auto max-h-[90vh] mt-5 p-4 sm:p-8 space-y-6 no-scrollbar"
       >
-        <!-- Header -->
         <div
           class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0"
         >
@@ -58,7 +57,6 @@ const getStatusBadgeClass = (status: string) => {
             <p class="text-xs text-[#697598]">View the details and activity of this invoice</p>
           </div>
 
-          <!-- Action Buttons -->
           <div class="flex flex-wrap gap-2">
             <button
               class="uppercase px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white text-xs text-blue border border-gray"
@@ -85,7 +83,6 @@ const getStatusBadgeClass = (status: string) => {
         </div>
         <ReminderSection />
 
-        <!-- Invoice Details & Activity -->
         <div class="flex flex-col md:flex-row justify-between w-full gap-6 md:gap-8">
           <div class="w-full md:w-[60%] border border-[#E3E6EF] rounded-4xl p-4 sm:p-6">
             <SingleInvoiceDetails />
