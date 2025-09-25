@@ -2,10 +2,10 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { socketService } from '@/services/socket.service'
-import { useInvoiceStore } from '@/stores/invoiceStore'
-import { useActivityStore } from '@/stores/activityStore'
-import type { NewInvoiceData } from '@/types/newInvoiceData'
-import type { InvoiceUpdateData } from '@/types/invoiceUpdate'
+import { useInvoiceStore } from './stores/invoiceStore'
+import { useActivityStore } from './stores/activityStore'
+import type { NewInvoiceData } from './types/newInvoiceData'
+import type { InvoiceUpdateData } from './types/invoiceUpdate'
 
 const socketConnected = ref(false)
 const invoiceStore = useInvoiceStore()
@@ -21,25 +21,23 @@ onMounted(() => {
   socketService.connect()
   socketConnected.value = socketService.connected
 
-  // 📡 Invoice updated
+  // invoice updated
   socketService.onInvoiceUpdated((data: InvoiceUpdateData) => {
-    console.log('📝 Invoice updated:', data)
+    console.log(' Invoice updated:', data)
 
     invoiceStore.updateInvoiceStatus(data.id, data.status)
     showNotification(`Invoice #${data.id} status changed to ${data.status}`)
 
-    // 👇 Log as activity
     activityStore.pushActivity({
       id: Date.now(),
-      actor: 'System', // or current user if available
+      actor: 'System',
       action: `Invoice #${data.id} updated → ${data.status}`,
       time: data.updatedAt,
     })
   })
 
-  // 📡 New invoice created
   socketService.onInvoiceCreated((data: NewInvoiceData) => {
-    console.log('🆕 New invoice created (from socket):', data)
+    console.log('New invoice created (from socket):', data)
 
     invoiceStore.pushInvoice({
       ...data,
@@ -63,16 +61,16 @@ onMounted(() => {
     })
   })
 
-  // 📡 General notifications
+  // general notifications
   socketService.onNotification((data: NotificationData) => {
-    console.log('🔔 Notification:', data)
+    console.log('Notification:', data)
     showNotification(data.message)
   })
 
-  // 🔑 Ask for notification permission once when mounted
+  // notification permission once when mounted
   if ('Notification' in window && Notification.permission === 'default') {
     Notification.requestPermission().then((permission) => {
-      console.log(`🔑 Notification permission: ${permission}`)
+      console.log(`Notification permission: ${permission}`)
     })
   }
 })

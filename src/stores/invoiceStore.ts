@@ -66,11 +66,8 @@ export const useInvoiceStore = defineStore('invoice', () => {
   }
 
   const openInvoiceModal = (invoice: Invoice) => {
-    console.log('🔄 Opening modal for invoice:', invoice.id)
     selectedInvoice.value = invoice
     isModalOpen.value = true
-    console.log('✅ Modal state updated - selectedInvoice:', selectedInvoice.value)
-    console.log('✅ Modal state updated - isModalOpen:', isModalOpen.value)
   }
 
   const closeInvoiceModal = () => {
