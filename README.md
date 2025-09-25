@@ -26,7 +26,7 @@ Built as part of the **Frontend Engineer Selection Task – Youverify (Sept 2025
 - Socket.IO (real-time updates)
 - Firebase (authentication)
 - TailwindCSS (styling)
-- Jest + Vue Test Utils (testing)
+- Vitest + Vue Test Utils (testing)
 
 ---
 
