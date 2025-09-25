@@ -8,14 +8,14 @@ Built as part of the **Frontend Engineer Selection Task – Youverify (Sept 2025
 
 ## 🚀 Features
 
-- 🔑 User Authentication (Firebase)
-- 🧾 Create & Update Invoices
-- ⚡ Real-time sync with **Socket.IO**
-- 📜 Activity Timeline (logs invoice changes)
-- 🔔 **Browser Notifications** → Make sure to allow notifications in Chrome (or your browser) when prompted
-- 📱 Responsive UI (Figma design)
-- 🛡️ Error handling for invalid routes & network issues
-- ✅ Unit + Integration tests (Jest)
+- User Authentication (Firebase)
+- Create & Update Invoices
+- Real-time sync with **Socket.IO**
+- Activity Timeline (logs invoice changes)
+- **Browser Notifications** → Make sure to allow notifications in Chrome (or your browser) when prompted
+- Responsive UI (Figma design)
+- Error handling for invalid routes & network issues
+- Unit + Integration tests (Jest)
 
 ---
 

@@ -4,15 +4,12 @@ import { dummyInvoices } from '@/composables/dummyInvoices'
 import type { Invoice } from '@/types/invoice'
 
 export const useInvoiceStore = defineStore('invoice', () => {
-  // State
   const invoices = ref<Invoice[]>([])
   const selectedInvoice = ref<Invoice | null>(null)
   const isModalOpen = ref(false)
   const isLoading = ref(false)
 
-  // Getters
   const recentInvoices = computed(() => {
-    // Always sort newest → oldest by createdAt
     return [...invoices.value]
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       .slice(0, 5)
@@ -37,11 +34,9 @@ export const useInvoiceStore = defineStore('invoice', () => {
     )
   })
 
-  // Actions
   const loadInvoices = async () => {
     isLoading.value = true
     try {
-      // Simulate API call delay
       await new Promise((resolve) => setTimeout(resolve, 1000))
       invoices.value = dummyInvoices
     } catch (error) {
@@ -55,7 +50,6 @@ export const useInvoiceStore = defineStore('invoice', () => {
     invoices.value = newInvoices
   }
 
-  // For invoices created locally (e.g., via modal form)
   const addInvoice = (newInvoice: Omit<Invoice, 'id' | 'createdAt'>) => {
     const invoice: Invoice = {
       ...newInvoice,
@@ -67,7 +61,6 @@ export const useInvoiceStore = defineStore('invoice', () => {
     return invoice
   }
 
-  // ✅ For invoices received from socket (already has id + createdAt)
   const pushInvoice = (invoice: Invoice) => {
     invoices.value.unshift(invoice)
   }
@@ -92,21 +85,17 @@ export const useInvoiceStore = defineStore('invoice', () => {
     }
   }
 
-  // Initialize with dummy data
   loadInvoices()
 
   return {
-    // State
     invoices,
     selectedInvoice,
     isModalOpen,
     isLoading,
 
-    // Getters
     recentInvoices,
     totalStats,
 
-    // Actions
     loadInvoices,
     setInvoices,
     addInvoice,

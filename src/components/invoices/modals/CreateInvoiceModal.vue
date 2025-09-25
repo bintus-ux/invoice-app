@@ -110,6 +110,19 @@ const submitForm = async () => {
   isLoading.value = false
   emit('close')
 }
+
+defineExpose({
+  invoiceData,
+  isLoading,
+  subtotal,
+  taxAmount,
+  total,
+  addItem,
+  removeItem,
+  calculateTotals,
+  formatCurrency,
+  submitForm,
+})
 </script>
 
 <template>
@@ -132,7 +145,7 @@ const submitForm = async () => {
         </div>
         <hr class="text-grey mx-4" />
 
-        <form @submit.prevent="submitForm" class="p-6 space-y-8">
+        <form @submit.prevent="submitForm" class="p-6 space-y-8" data-testid="submit-btn">
           <div>
             <h3 class="text-lg font-bold text-gray-700 mb-4">Client Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -309,6 +322,7 @@ const submitForm = async () => {
                   <button
                     type="button"
                     @click="removeItem(index)"
+                    data-testid="remove-item-btn"
                     class="bg-red-500 text-white rounded-lg w-8 h-8 flex items-center justify-center"
                     :disabled="isLoading"
                   >
@@ -321,6 +335,7 @@ const submitForm = async () => {
             <button
               type="button"
               @click="addItem"
+              data-testid="add-item-btn"
               class="mt-3 w-full border-2 border-dashed border-gray-300 rounded-lg py-2 text-grey hover:bg-gray-100"
               :disabled="isLoading"
             >

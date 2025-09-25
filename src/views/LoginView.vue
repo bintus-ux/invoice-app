@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useRouter } from 'vue-router'
+import LoadingSpinner from '@/components/icons/LoadingSpinner.vue'
 
 const email = ref('')
 const password = ref('')
@@ -15,7 +16,9 @@ async function onLogin() {
   error.value = ''
   try {
     await signInWithEmailAndPassword(auth, email.value, password.value)
-    router.push('/')
+    setTimeout(() => {
+      router.push('/invoice')
+    }, 2000)
   } catch (e: unknown) {
     error.value = (e as Error).message
   } finally {
@@ -60,8 +63,10 @@ async function onLogin() {
       <button
         type="submit"
         :disabled="loading"
-        class="w-full py-3 bg-blue text-white rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full py-3 bg-blue text-white rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
+        <LoadingSpinner v-if="loading" />
+
         <span v-if="loading">Signing in...</span>
         <span v-else>Sign In</span>
       </button>

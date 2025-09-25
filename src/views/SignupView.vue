@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useRouter } from 'vue-router'
+import LoadingSpinner from '@/components/icons/LoadingSpinner.vue'
 
 const email = ref('')
 const password = ref('')
@@ -58,8 +59,9 @@ async function onSignup() {
       <button
         type="submit"
         :disabled="loading"
-        class="w-full py-3 bg-blue text-white rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full py-3 bg-blue text-white rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
+        <LoadingSpinner v-if="loading" />
         <span v-if="loading">Signing up...</span>
         <span v-else>Sign Up</span>
       </button>
